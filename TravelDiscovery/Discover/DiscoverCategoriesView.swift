@@ -10,7 +10,7 @@ import SwiftUI
 struct DiscoverCategoriesView : View {
     let categories: [Category] = [
         .init(name: "art"  , imageName: "paintpalette.fill"),
-        .init(name: "Sport"  , imageName: "sportscourt.fill"),
+        .init(name: "sports"  , imageName: "sportscourt.fill"),
         .init(name: "Live Events"  , imageName: "music.mic"),
         .init(name: "Food"  , imageName: "tray.fill"),
         .init(name: "History"  , imageName: "books.vertical.fill")
@@ -22,7 +22,7 @@ struct DiscoverCategoriesView : View {
                     
                     NavigationLink(
                         
-                        destination: CategoryDetailView()
+                        destination: CategoryDetailView(name: category.name)
                         , label:{
                             VStack(spacing: 0){
                                 //Spacer()
@@ -46,39 +46,12 @@ struct DiscoverCategoriesView : View {
     }
 }
 
-class CategoryDetailViewModel: ObservableObject{
-    
-    @Published var isLoading = true
-    @Published var places = [Place]()
-    @Published var errorMessage = ""
-    
-    init() {
-        
-        if let path = Bundle.main.url(forResource: "user", withExtension: "json"){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            
-            
-                do {
-                    let data = try Data(contentsOf: path)
-                            
-                    self.places = try JSONDecoder().decode([Place].self, from: data)
-                } catch{
-                    print("failed to decode JSON: ", error)
-                    self.errorMessage = error.localizedDescription
-                    
-                }
-                self.isLoading = false
-                //self.places = [1,2,3,4,5,6,7]
-            
-        }
-    }
-        }
-}
+
     struct DiscoverCategoriesView_Previews: PreviewProvider{
         static var previews: some View{
-            NavigationView{
-                CategoryDetailView()
-            }
+            
+                DiscoverView()
+            
 
         }
 }

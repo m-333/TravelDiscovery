@@ -1,0 +1,22 @@
+[
+  {
+    "id": 6,
+    "name": "Soccer Stadium",
+    "country": "Mexico",
+    "description": "",
+    "thumbnail": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/82e82103-a229-4a1e-bb2a-57ba3e76d024",
+    "photos": [
+
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Basketball Games",
+    "country": "Mexico",
+    "description": "",
+    "photos": [
+
+    ],
+    "thumbnail": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/fa00e2dc-6589-497d-a5f1-d1bd908ed81f"
+  }
+]

@@ -7,9 +7,44 @@
 
 import SwiftUI
 import Kingfisher
+class CategoryDetailViewModel: ObservableObject{
+    
+    @Published var isLoading = true
+    @Published var places = [Place]()
+    @Published var errorMessage = ""
+    
+    init(name : String) {
+        
+        if let path = Bundle.main.url(forResource: "\(name)", withExtension: "json"){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            
+            
+                do {
+                    let data = try Data(contentsOf: path)
+                            
+                    self.places = try JSONDecoder().decode([Place].self, from: data)
+                } catch{
+                    print("failed to decode JSON: ", error)
+                    self.errorMessage = error.localizedDescription
+                    
+                }
+                self.isLoading = false
+                //self.places = [1,2,3,4,5,6,7]
+            
+        }
+    }
+        }
+}
 struct CategoryDetailView : View {
+    
     @State private var isLoading = false
-    @ObservedObject var vm = CategoryDetailViewModel()
+    @ObservedObject var vm : CategoryDetailViewModel
+     let name :String
+    
+    init(name: String){
+        self.name = name
+        self.vm =  .init(name: name)
+    }
     var body: some View {
         ZStack{
             if vm.isLoading {
@@ -39,7 +74,7 @@ struct CategoryDetailView : View {
                                  }.asTile()
                                      .padding()
                                  
-                             }.navigationBarTitle("Category", displayMode: .inline)
+                             }.navigationBarTitle( name, displayMode: .inline)
                          }
                 }
             }
@@ -49,8 +84,8 @@ struct CategoryDetailView : View {
 }
 
 struct CategoryDetailView_Previews: PreviewProvider{
-    static var previews: some View{
+    static var previews: some View {
         
-                  CategoryDetailView()
+        CategoryDetailView(name: "sports")
             }
 }

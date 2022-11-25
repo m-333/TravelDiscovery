@@ -45,52 +45,75 @@ struct DiscoverCategoriesView : View {
         }
     }
 }
+struct Place: Decodable, Hashable{
+    let name, thumbnail: String
+}
+
 class CategoryDetailViewModel: ObservableObject{
     
     @Published var isLoading = true
-    @Published var places = [Int]()
+    @Published var places = [Place]()
     init(){
+        
+        if let path = Bundle.main.url(forResource: "user", withExtension: "json"){
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-            self.isLoading = false
-            self.places = [1,2,3,4,5,6,7]
+            
+            
+                do {
+                    let data = try Data(contentsOf: path)
+                            
+                    self.places = try JSONDecoder().decode([Place].self, from: data)
+                } catch{
+                    print("failed to decode JSON: ", error)
+                    
+                }
+                self.isLoading = false
+                //self.places = [1,2,3,4,5,6,7]
+            
         }
-  }
+    }
+        }
 }
+  
+
 
 struct ActivityIndicatorView: UIViewRepresentable{
-    typealias UIViewType = UIActivityIndicatorView
-    
+    var style: UIActivityIndicatorView.Style
+    var isLoading: Bool
     
     func makeUIView(context: Context) -> UIActivityIndicatorView {
-        let aiv = UIActivityIndicatorView(style: .large)
-        aiv.startAnimating()
-        return aiv
+        return UIActivityIndicatorView(style: style)
     }
+   
     func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
-        <#code#>
+         isLoading ? uiView.startAnimating() : uiView.startAnimating()
     }
 }
 struct CategoryDetailView : View{
-    
+    @State private var isLoading = false
     @ObservedObject var vm = CategoryDetailViewModel()
     var body: some View {
         ZStack{
             if vm.isLoading {
                 VStack{
-                   ActivityIndicatorView()
-                    Text("Curently Loading ")
-                        .foregroundColor(.white)
+                    ActivityIndicatorView(style: .large, isLoading: isLoading)
+                    Text(" Loading ")
+                        .foregroundColor(Color.white)
                         .font(.system(size: 16, weight: .semibold))
-                }
+                        
+                }.padding()
+                .background(Color.gray)
+                .cornerRadius(8)
+                
                 
             } else{
                 ScrollView {
-                    ForEach (0..<5, id: \.self){ num in
+                    ForEach (vm.places, id: \.self){ place in
                         VStack(alignment: .leading, spacing: 0){
                             Image("art")
                                 .resizable()
                                 .scaledToFill()
-                            Text("Dem0123")
+                            Text(place.name)
                                 .font(.system(size: 12, weight: .semibold))
                                 .padding()
                         }.asTile()

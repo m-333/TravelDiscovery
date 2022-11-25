@@ -20,6 +20,7 @@
 		FD442861292FDB1B005B9635 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442860292FDB1B005B9635 /* Category.swift */; };
 		FD442866292FF900005B9635 /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442865292FF900005B9635 /* TileModifier.swift */; };
 		FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */; };
+		FDE1B3FC2931245A00738503 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = FDE1B3FB2931245A00738503 /* user.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		FD442860292FDB1B005B9635 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FD442865292FF900005B9635 /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
 		FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
+		FDE1B3FB2931245A00738503 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,17 +76,18 @@
 				FD442852292FD3AF005B9635 /* Discover */,
 				FD442844292E593F005B9635 /* TravelDiscoveryApp.swift */,
 				FD442848292E5942005B9635 /* Assets.xcassets */,
-				FD44284A292E5942005B9635 /* Preview Content */,
+				FD44284A292E5942005B9635 /* source */,
 			);
 			path = TravelDiscovery;
 			sourceTree = "<group>";
 		};
-		FD44284A292E5942005B9635 /* Preview Content */ = {
+		FD44284A292E5942005B9635 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				FDE1B3FB2931245A00738503 /* user.json */,
 				FD44284B292E5942005B9635 /* Preview Assets.xcassets */,
 			);
-			path = "Preview Content";
+			path = source;
 			sourceTree = "<group>";
 		};
 		FD442852292FD3AF005B9635 /* Discover */ = {
@@ -176,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE1B3FC2931245A00738503 /* user.json in Resources */,
 				FD44284C292E5942005B9635 /* Preview Assets.xcassets in Resources */,
 				FD442849292E5942005B9635 /* Assets.xcassets in Resources */,
 			);

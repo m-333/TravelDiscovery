@@ -30,36 +30,83 @@ struct PopularDestinationView : View{
         ScrollView(.horizontal){
             HStack(spacing: 8.0 ){
                 ForEach(detinations, id: \.self) { destination in
-                    VStack(alignment: . leading, spacing: 0){
-                        Image(destination.imageName)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 125, height: 125)
-                            .cornerRadius(4)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 6)
-                        
-                        Text(destination.name)
-                            .font(.system(size: 12, weight: .semibold))
-                            .padding(.horizontal, 12)
-                        
-                        Text(destination.country)
-                            .font(.system(size: 12, weight: .semibold))
-                            .padding(.horizontal, 12)
-                            .padding(.bottom, 8)
-                            .foregroundColor(.gray)
-                    }
-                     .asTile()
+                    NavigationLink (
+                        destination: PopularDestinationDetailView(destination: destination),
+                    label: {
+                        PopularDestinatonTile(destination: destination)
                         .padding(.bottom)
+                        
+                    })
                   }
                }.padding(.horizontal)
             }
         }
     }
 }
+struct PopularDestinationDetailView : View{
+    let destination : Destination
+    
+    var body: some View{
+        ScrollView{
+            Image(destination.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipped()
+            
+            VStack(alignment: .leading){
+                Text(destination.name)
+                    .font(.system(size: 18, weight: .bold))
+                Text(destination.country)
+                HStack{
+                    ForEach(0..<5, id: \.self){ num in
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.orange)
+                    }
+                }.padding(.top, 2)
+                
+                Text("Lorem Ipsum")
+                    .padding(.top, 4 )
+                    //.lineLimit(100)
+                HStack{ Spacer()}
+            }
+        }.padding(.horizontal)
+        .navigationBarTitle(destination.name, displayMode: .inline)
+    }
+}
+struct PopularDestinatonTile: View {
+    let destination : Destination
+    var body: some View{
+        VStack(alignment: . leading, spacing: 0){
+            Image(destination.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 125, height: 125)
+                .cornerRadius(4)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 6)
+            
+            Text(destination.name)
+                .font(.system(size: 12, weight: .semibold))
+                .padding(.horizontal, 12)
+                .foregroundColor(.gray)
+            
+            Text(destination.country)
+                .font(.system(size: 12, weight: .semibold))
+                .padding(.horizontal, 12)
+                .padding(.bottom, 8)
+                .foregroundColor(.gray)
+        }
+         .asTile()
+    }
+}
 
 struct PopularDestinationView_Previews: PreviewProvider {
     static var previews: some View {
+       
+        NavigationView {
+            PopularDestinationDetailView(destination: .init(name: "Paris", country:"Paris", imageName:"eifel_tower"))
+        }
         
         PopularDestinationView()
         DiscoverView()

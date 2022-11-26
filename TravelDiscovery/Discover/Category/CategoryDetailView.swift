@@ -14,6 +14,15 @@ class CategoryDetailViewModel: ObservableObject{
     @Published var errorMessage = ""
     
     init(name : String) {
+        /*
+         if let statusCode = (resp as? HTTPURLResponse)?.statusCode,
+         statusCode>= 400{
+         self.isLoading = false,
+         self.errorMessage = "Bad status: \(statusCode)"
+         return
+         }
+         
+         */
         
         if let path = Bundle.main.url(forResource: "\(name)", withExtension: "json"){
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
@@ -23,6 +32,7 @@ class CategoryDetailViewModel: ObservableObject{
                     let data = try Data(contentsOf: path)
                             
                     self.places = try JSONDecoder().decode([Place].self, from: data)
+                    //self.isLoading = false
                 } catch{
                     print("failed to decode JSON: ", error)
                     self.errorMessage = error.localizedDescription
@@ -61,6 +71,16 @@ struct CategoryDetailView : View {
                 
             } else{
                 ZStack{
+                    
+                    if !vm.errorMessage.isEmpty{
+                     VStack{
+                     Image(systemName: "xmark.octagon.fill")
+                            .font(.system(size: 64, weight: .semibold))
+                            .foregroundColor(.red)
+                     Text(vm.errorMessage)
+                       }
+                     }
+                     
                     Text(vm.errorMessage)
                          ScrollView {
                              ForEach (vm.places, id: \.self){ place in
@@ -86,6 +106,7 @@ struct CategoryDetailView : View {
 struct CategoryDetailView_Previews: PreviewProvider{
     static var previews: some View {
         
-        CategoryDetailView(name: "sports")
+        CategoryDetailView(name: "name")
+        DiscoverView()
             }
 }

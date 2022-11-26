@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+struct NavigationLazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
+    }
+}
 
 struct DiscoverCategoriesView : View {
     let categories: [Category] = [
@@ -22,8 +31,8 @@ struct DiscoverCategoriesView : View {
                     
                     NavigationLink(
                         
-                        destination: CategoryDetailView(name: category.name)
-                        , label:{
+                        destination: NavigationLazyView(CategoryDetailView(name: category.name)),
+                          label:{
                             VStack(spacing: 0){
                                 //Spacer()
                                 Image(systemName: category.imageName)

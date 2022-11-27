@@ -20,6 +20,8 @@
 		FD44285F292FDB05005B9635 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44285E292FDB05005B9635 /* User.swift */; };
 		FD442861292FDB1B005B9635 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442860292FDB1B005B9635 /* Category.swift */; };
 		FD442866292FF900005B9635 /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442865292FF900005B9635 /* TileModifier.swift */; };
+		FD7DCA422932A0B600D75752 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA412932A0B600D75752 /* CoreLocation.framework */; };
+		FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA432932A0CD00D75752 /* MapKit.framework */; };
 		FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */; };
 		FDE1B3FC2931245A00738503 /* art.json in Resources */ = {isa = PBXBuildFile; fileRef = FDE1B3FB2931245A00738503 /* art.json */; };
 		FDE1B3FF2931422C00738503 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FDE1B3FE2931422C00738503 /* Kingfisher */; };
@@ -43,6 +45,8 @@
 		FD44285E292FDB05005B9635 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD442860292FDB1B005B9635 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FD442865292FF900005B9635 /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
+		FD7DCA412932A0B600D75752 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FD7DCA432932A0CD00D75752 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
 		FDE1B3FB2931245A00738503 /* art.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = art.json; sourceTree = "<group>"; };
 		FDE1B401293143C100738503 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7DCA422932A0B600D75752 /* CoreLocation.framework in Frameworks */,
+				FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */,
 				FDE1B3FF2931422C00738503 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +82,7 @@
 			children = (
 				FD442843292E593F005B9635 /* TravelDiscovery */,
 				FD442842292E593F005B9635 /* Products */,
+				FD7DCA402932A0B600D75752 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +148,15 @@
 				FDE1B4032931444F00738503 /* ActivityIndicatorView.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		FD7DCA402932A0B600D75752 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD7DCA432932A0CD00D75752 /* MapKit.framework */,
+				FD7DCA412932A0B600D75752 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FDE1B400293143B000738503 /* Category */ = {

@@ -43,6 +43,8 @@ struct PopularDestinationView : View{
         }
     }
 }
+import MapKit
+
 struct PopularDestinationDetailView : View{
     let destination : Destination
     
@@ -65,15 +67,28 @@ struct PopularDestinationDetailView : View{
                     }
                 }.padding(.top, 2)
                 
-                Text("Lorem Ipsum")
-                    .padding(.top, 4 )
+                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                    .padding(.top, 4)
+                    .font(.system(size: 14))
                     //.lineLimit(100)
-                HStack{ Spacer()}
+                HStack{Spacer()}
+            }.padding(.horizontal)
+            HStack {
+                Text("Location")
+                    .font(.system(size: 18, weight: .semibold))
+                Spacer()
+                
+            }.padding(.horizontal)
+            HStack{
+                Map(coordinateRegion: $region)
+                    .frame(width: 400 , height: 400)
             }
-        }.padding(.horizontal)
-        .navigationBarTitle(destination.name, displayMode: .inline)
+            
+        }.navigationBarTitle(destination.name, displayMode: .inline)
     }
+    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
 }
+
 struct PopularDestinatonTile: View {
     let destination : Destination
     var body: some View{
@@ -105,7 +120,7 @@ struct PopularDestinationView_Previews: PreviewProvider {
     static var previews: some View {
        
         NavigationView {
-            PopularDestinationDetailView(destination: .init(name: "Paris", country:"Paris", imageName:"eifel_tower"))
+            PopularDestinationDetailView(destination: .init(name: "Paris", country:"France", imageName:"paris"))
         }
         
         PopularDestinationView()

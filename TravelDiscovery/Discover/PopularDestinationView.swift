@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PopularDestinationView : View{
     
     let detinations: [Destination] = [
-        .init(name: "Paris", country: "France", imageName: "paris"),
-        .init(name: "Tokyo", country: "France", imageName: "japonya"),
-        .init(name: "New York", country: "US", imageName: "new-york")
+        .init(name: "Paris", country: "France", imageName: "paris", latitude: 0, longitude: 0),
+        .init(name: "Tokyo", country: "Japan", imageName: "japonya", latitude: 0, longitude: 0),
+        .init(name: "New York", country: "US", imageName: "new-york", latitude: 0, longitude: 0)
         
     ]
     
@@ -47,7 +48,12 @@ import MapKit
 
 struct PopularDestinationDetailView : View{
     let destination : Destination
-    
+    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+   
+    init(destination: Destination){
+        self.destination = destination
+        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.001)))
+    }
     var body: some View{
         ScrollView{
             Image(destination.imageName)
@@ -86,7 +92,7 @@ struct PopularDestinationDetailView : View{
             
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
-    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+   
 }
 
 struct PopularDestinatonTile: View {
@@ -120,7 +126,7 @@ struct PopularDestinationView_Previews: PreviewProvider {
     static var previews: some View {
        
         NavigationView {
-            PopularDestinationDetailView(destination: .init(name: "Paris", country:"France", imageName:"paris"))
+            PopularDestinationDetailView(destination: .init(name: "Paris", country:"France", imageName:"paris", latitude: 48.859565, longitude: 2.353235))
         }
         
         PopularDestinationView()

@@ -48,11 +48,13 @@ import MapKit
 
 struct PopularDestinationDetailView : View{
     let destination : Destination
-    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+//    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @State var region : MKCoordinateRegion
+    @State var isShowAttractions = false
    
     init(destination: Destination){
         self.destination = destination
-        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.01, longitudeDelta: 0.001)))
+        self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
     }
     var body: some View{
         ScrollView{
@@ -83,17 +85,38 @@ struct PopularDestinationDetailView : View{
                 Text("Location")
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()
+                Button(action: {isShowAttractions.toggle() }, label: {
+                    Text("\(isShowAttractions ? "Hide" : "Show") Attractions")
+                        .font(.system(size: 12, weight: .semibold))
+                })
                 
+                Toggle("", isOn: $isShowAttractions)
+                    .labelsHidden()
             }.padding(.horizontal)
-            HStack{
-                Map(coordinateRegion: $region)
-                    .frame(width: 400 , height: 400)
+//            HStack{
+//                Map(coordinateRegion: $region)
+//                    .frame(width: 400 , height: 400)
+//            }
+            Map(coordinateRegion: $region, annotationItems: isShowAttractions ?  attraction : []) { attraction in
+               MapMarker(coordinate:  .init(latitude: attraction.latitude, longitude: attraction.longitude), tint:  .red)
+                    
+                
             }
-            
+            .frame(height:  300)
+        
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
+                let attraction: [Attraction] = [
+                    .init(name: "Eiffel Tower", latitude: 48.859565, longitude: 2.353235),
+                    .init(name: "Champs-Elysees", latitude: 48.866867, longitude: 2.311780),
+                    .init(name: "Louvre Museum", latitude: 48.860288, longitude: 2.337789)]
    
 }
+struct Attraction: Identifiable {
+    var id =  UUID().uuidString
+    let name: String
+     let latitude , longitude: Double
+    }
 
 struct PopularDestinatonTile: View {
     let destination : Destination

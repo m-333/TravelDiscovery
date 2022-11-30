@@ -53,16 +53,26 @@ struct PopularDestinationDetailView : View{
     @State var isShowAttractions = false
    
     init(destination: Destination){
+        
+        
+        
         self.destination = destination
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
     }
+
     var body: some View{
+//        UIViewController()
+        
         ScrollView{
-            Image(destination.imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 200)
-                .clipped()
+            
+            DestinationHeaderContainer()
+                .frame(height: 250)
+            
+//            Image(destination.imageName)
+//                .resizable()
+//                .scaledToFill()
+//                .frame(height: 200)
+//                .clipped()
             
             VStack(alignment: .leading){
                 Text(destination.name)
@@ -115,6 +125,7 @@ struct PopularDestinationDetailView : View{
                     .init(name: "Louvre Museum",imageName: "paris-2" , latitude: 48.860288, longitude: 2.337789)]
    
 }
+
 struct CustomMapAnnotation: View{
     let attraction: Attraction
     var body: some View{

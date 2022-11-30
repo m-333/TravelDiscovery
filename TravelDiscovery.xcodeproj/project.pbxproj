@@ -20,6 +20,7 @@
 		FD44285F292FDB05005B9635 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD44285E292FDB05005B9635 /* User.swift */; };
 		FD442861292FDB1B005B9635 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442860292FDB1B005B9635 /* Category.swift */; };
 		FD442866292FF900005B9635 /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD442865292FF900005B9635 /* TileModifier.swift */; };
+		FD711C822937CFE4001854AD /* DestinationHeaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD711C812937CFE4001854AD /* DestinationHeaderContainer.swift */; };
 		FD7DCA422932A0B600D75752 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA412932A0B600D75752 /* CoreLocation.framework */; };
 		FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA432932A0CD00D75752 /* MapKit.framework */; };
 		FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */; };
@@ -45,6 +46,7 @@
 		FD44285E292FDB05005B9635 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FD442860292FDB1B005B9635 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		FD442865292FF900005B9635 /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
+		FD711C812937CFE4001854AD /* DestinationHeaderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationHeaderContainer.swift; sourceTree = "<group>"; };
 		FD7DCA412932A0B600D75752 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD7DCA432932A0CD00D75752 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		FD442852292FD3AF005B9635 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				FD711C802937CFA8001854AD /* Destination */,
 				FDE1B400293143B000738503 /* Category */,
 				FD442846292E593F005B9635 /* DiscoverView.swift */,
 				FD442853292FD6DC005B9635 /* PopularDestinationView.swift */,
@@ -148,6 +151,14 @@
 				FDE1B4032931444F00738503 /* ActivityIndicatorView.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		FD711C802937CFA8001854AD /* Destination */ = {
+			isa = PBXGroup;
+			children = (
+				FD711C812937CFE4001854AD /* DestinationHeaderContainer.swift */,
+			);
+			path = Destination;
 			sourceTree = "<group>";
 		};
 		FD7DCA402932A0B600D75752 /* Frameworks */ = {
@@ -250,6 +261,7 @@
 				FD442866292FF900005B9635 /* TileModifier.swift in Sources */,
 				FD442847292E593F005B9635 /* DiscoverView.swift in Sources */,
 				FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */,
+				FD711C822937CFE4001854AD /* DestinationHeaderContainer.swift in Sources */,
 				FDE1B406293144C000738503 /* Place.swift in Sources */,
 				FD44285B292FDAE9005B9635 /* Destination.swift in Sources */,
 				FD44285F292FDB05005B9635 /* User.swift in Sources */,

@@ -98,23 +98,48 @@ struct PopularDestinationDetailView : View{
 //                    .frame(width: 400 , height: 400)
 //            }
             Map(coordinateRegion: $region, annotationItems: isShowAttractions ?  attraction : []) { attraction in
-               MapMarker(coordinate:  .init(latitude: attraction.latitude, longitude: attraction.longitude), tint:  .red)
-                    
-                
+//               MapMarker(coordinate:  .init(latitude: attraction.latitude, longitude: attraction.longitude), tint:  .red)
+//
+                MapAnnotation(coordinate: .init(latitude: attraction.latitude, longitude: attraction.longitude)){
+                    CustomMapAnnotation(attraction: attraction)
+                  
+                }
             }
             .frame(height:  300)
         
         }.navigationBarTitle(destination.name, displayMode: .inline)
     }
                 let attraction: [Attraction] = [
-                    .init(name: "Eiffel Tower", latitude: 48.859565, longitude: 2.353235),
-                    .init(name: "Champs-Elysees", latitude: 48.866867, longitude: 2.311780),
-                    .init(name: "Louvre Museum", latitude: 48.860288, longitude: 2.337789)]
+                    .init(name: "Eiffel Tower",imageName: "paris" , latitude: 48.859565, longitude: 2.353235),
+                    .init(name: "Champs-Elysees", imageName: "paris-1" ,latitude: 48.866867, longitude: 2.311780),
+                    .init(name: "Louvre Museum",imageName: "paris-2" , latitude: 48.860288, longitude: 2.337789)]
+   
+}
+struct CustomMapAnnotation: View{
+    let attraction: Attraction
+    var body: some View{
+        VStack{
+            Image(attraction.imageName)
+                .resizable()
+                .frame(width: 80, height: 60)
+                .cornerRadius(4)
+            Text(attraction.name)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 4 )
+                .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .foregroundColor(.white)
+               .cornerRadius(4)
+                .overlay(RoundedRectangle( cornerRadius: 4)
+                    .stroke(Color(.init(white: 0, alpha: 0.5)))
+                )
+//                .border(Color.black)
+        }.shadow(radius: 5)
+    }
    
 }
 struct Attraction: Identifiable {
     var id =  UUID().uuidString
-    let name: String
+    let name, imageName: String
      let latitude , longitude: Double
     }
 

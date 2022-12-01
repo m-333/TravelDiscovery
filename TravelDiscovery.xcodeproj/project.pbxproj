@@ -24,6 +24,7 @@
 		FD7DCA422932A0B600D75752 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA412932A0B600D75752 /* CoreLocation.framework */; };
 		FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA432932A0CD00D75752 /* MapKit.framework */; };
 		FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */; };
+		FDD6E90429391305007109C1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FDD6E90329391305007109C1 /* Kingfisher */; };
 		FDE1B3FC2931245A00738503 /* art.json in Resources */ = {isa = PBXBuildFile; fileRef = FDE1B3FB2931245A00738503 /* art.json */; };
 		FDE1B3FF2931422C00738503 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FDE1B3FE2931422C00738503 /* Kingfisher */; };
 		FDE1B402293143C100738503 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE1B401293143C100738503 /* CategoryDetailView.swift */; };
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD6E90429391305007109C1 /* Kingfisher in Frameworks */,
 				FD7DCA422932A0B600D75752 /* CoreLocation.framework in Frameworks */,
 				FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */,
 				FDE1B3FF2931422C00738503 /* Kingfisher in Frameworks */,
@@ -196,6 +198,7 @@
 			name = TravelDiscovery;
 			packageProductDependencies = (
 				FDE1B3FE2931422C00738503 /* Kingfisher */,
+				FDD6E90329391305007109C1 /* Kingfisher */,
 			);
 			productName = TravelDiscovery;
 			productReference = FD442841292E593F005B9635 /* TravelDiscovery.app */;
@@ -227,6 +230,7 @@
 			mainGroup = FD442838292E593F005B9635;
 			packageReferences = (
 				FDE1B3FD2931422C00738503 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FDD6E90229391305007109C1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = FD442842292E593F005B9635 /* Products */;
 			projectDirPath = "";
@@ -473,6 +477,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FDD6E90229391305007109C1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		FDE1B3FD2931422C00738503 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -484,6 +496,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FDD6E90329391305007109C1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FDD6E90229391305007109C1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		FDE1B3FE2931422C00738503 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FDE1B3FD2931422C00738503 /* XCRemoteSwiftPackageReference "Kingfisher" */;

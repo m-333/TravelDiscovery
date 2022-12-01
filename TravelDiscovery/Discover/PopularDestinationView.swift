@@ -59,13 +59,14 @@ struct PopularDestinationDetailView : View{
         self.destination = destination
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
     }
-
+   let imageUrlStrings = [ "https://res.cloudinary.com/turna/image/upload/c_scale,w_648,h_405,dpr_2/f_jpg,q_auto:low/v1572614327/Paris_z0tgmv.jpg?_i=AA", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646040162/post_images/paris-125/sebastien-gabriel-O0zLR_lVt8I-unsplash_Cropped.jpg", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646041901/post_images/paris-125/Barrios/24007076426_df0131119d_o_Cropped.jpg"
+    ]
     var body: some View{
 //        UIViewController()
         
         ScrollView{
             
-            DestinationHeaderContainer(imageName: ["paris", "paris-1", "paris-2"])
+            DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
                 .frame(height: 250)
             
 //            Image(destination.imageName)

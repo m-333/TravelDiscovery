@@ -9,11 +9,12 @@ import SwiftUI
 import AVFoundation
 
 struct DestinationHeaderContainer: UIViewControllerRepresentable{
-    let imageName: [String]
+    let imageUrlStrings: [String]
+    
     func makeUIViewController(context: Context) -> UIViewController {
 //        let redVC = UIViewController()
 //        redVC.view.backgroundColor = .red
-    let pvc = CustomPageViewController(imageName: ["paris", "paris-1", "paris-2"])
+    let pvc = CustomPageViewController(imageUrlStrings: imageUrlStrings)
         return pvc
     }
     typealias UIViewControllerType =  UIViewController
@@ -51,15 +52,16 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
 //    let secondVC = UIHostingController(rootView: Text("Second "))
 //    let thirdVC = UIHostingController(rootView: Text("third"))
 //    lazy var allControllers : [UIViewController] = [firstVC, secondVC, thirdVC]
-    init(imageName: [String]){
+    init(imageUrlStrings: [String]){
         
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemGray5
         UIPageControl.appearance().currentPageIndicatorTintColor = .red
         
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 //        view.backgroundColor = .orange
-        allControllers = imageName.map({ imageName in
-            let hostingController = UIHostingController(rootView: Image(imageName)
+        allControllers = imageUrlStrings.map({ imageName in
+            let hostingController = UIHostingController(rootView:
+                                                            KFImage(URL(string: imageName))
                 .resizable()
                 .scaledToFill()
             )
@@ -76,12 +78,15 @@ class CustomPageViewController: UIPageViewController, UIPageViewControllerDataSo
     
 }
 }
+import Kingfisher
 
 struct DestinationHeaderContainer_Previews: PreviewProvider {
+    static let imageUrlStrings = [ "https://res.cloudinary.com/turna/image/upload/c_scale,w_648,h_405,dpr_2/f_jpg,q_auto:low/v1572614327/Paris_z0tgmv.jpg?_i=AA", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646040162/post_images/paris-125/sebastien-gabriel-O0zLR_lVt8I-unsplash_Cropped.jpg", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646041901/post_images/paris-125/Barrios/24007076426_df0131119d_o_Cropped.jpg"
+    ]
     static var previews: some View {
         
         
-        DestinationHeaderContainer(imageName: ["paris", "paris-1", "paris-2"])
+        DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
         NavigationView {
             PopularDestinationDetailView(destination: .init(name: "Paris", country:"France", imageName:"paris", latitude: 48.859565, longitude: 2.353235))
         }

@@ -11,9 +11,9 @@ import MapKit
 struct PopularDestinationView : View{
     
     let detinations: [Destination] = [
-        .init(name: "Paris", country: "France", imageName: "paris", latitude: 0, longitude: 0),
-        .init(name: "Tokyo", country: "Japan", imageName: "japonya", latitude: 0, longitude: 0),
-        .init(name: "New York", country: "US", imageName: "new-york", latitude: 0, longitude: 0)
+        .init(name: "paris", country: "France", imageName: "paris", latitude: 48.855014 , longitude: 2.341231),
+        .init(name: "tokyo", country: "Japan", imageName: "japonya", latitude: 35.67988, longitude: 139.7695),
+        .init(name: "New York", country: "US", imageName: "new-york", latitude: 40.71592, longitude: -74.0055)
         
     ]
     
@@ -44,11 +44,38 @@ struct PopularDestinationView : View{
         }
     }
 }
+struct DestinationDetails: Decodable{
+    let description: String
+    let photos: [String]
+}
+
+class DestinationDetailsViewModel: ObservableObject {
+    @Published var isLoading = true
+    @Published var destinationDetails: DestinationDetails?
+    
+    init(name: String) {
+        
+        if let path = Bundle.main.url(forResource: "\(name)", withExtension: "json"){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                            do {
+                                let data = try Data(contentsOf: path)
+                                 
+                                self.destinationDetails = try JSONDecoder().decode(DestinationDetails.self, from: data)
+                } catch{
+                    print("failed to decode JSON: ", error)
+                }
+            }
+        }
+    }
+       
+}
+
 import MapKit
 
 struct PopularDestinationDetailView : View{
+    @ObservedObject var vm: DestinationDetailsViewModel
     let destination : Destination
-//    @State var region = MKCoordinateRegion(center: .init(latitude: 48.859565, longitude: 2.353235), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1))
+
     @State var region : MKCoordinateRegion
     @State var isShowAttractions = false
    
@@ -58,17 +85,21 @@ struct PopularDestinationDetailView : View{
         
         self.destination = destination
         self._region = State(initialValue: MKCoordinateRegion(center: .init(latitude: destination.latitude, longitude: destination.longitude), span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+        
+        self.vm = .init(name: destination.name)
+        
     }
-   let imageUrlStrings = [ "https://res.cloudinary.com/turna/image/upload/c_scale,w_648,h_405,dpr_2/f_jpg,q_auto:low/v1572614327/Paris_z0tgmv.jpg?_i=AA", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646040162/post_images/paris-125/sebastien-gabriel-O0zLR_lVt8I-unsplash_Cropped.jpg", "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646041901/post_images/paris-125/Barrios/24007076426_df0131119d_o_Cropped.jpg"
+   let imageUrlStrings = [ "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/7156c3c6-945e-4284-a796-915afdc158b5", "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/b1642068-5624-41cf-83f1-3f6dff8c1702", "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/6982cc9d-3104-4a54-98d7-45ee5d117531","https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/2240d474-2237-4cd3-9919-562cd1bb439e"
+                           
     ]
     var body: some View{
 //        UIViewController()
-        
+       
         ScrollView{
-            
-            DestinationHeaderContainer(imageUrlStrings: imageUrlStrings)
-                .frame(height: 250)
-            
+            if let photos = vm.destinationDetails?.photos {
+                DestinationHeaderContainer(imageUrlStrings: photos)
+                    .frame(height: 250)
+            }
 //            Image(destination.imageName)
 //                .resizable()
 //                .scaledToFill()
@@ -86,7 +117,7 @@ struct PopularDestinationDetailView : View{
                     }
                 }.padding(.top, 2)
                 
-                Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
+                Text(vm.destinationDetails?.description ?? "")
                     .padding(.top, 4)
                     .font(.system(size: 14))
                     //.lineLimit(100)

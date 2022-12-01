@@ -10,8 +10,8 @@ import SwiftUI
 struct TrendingCreatorsView : View{
     
     let users: [User] = [
-        .init(name: "Oguzhan", imageName: "profil-1"),
-        .init(name: "Bugra Utku", imageName: "profil-2"),
+        .init(name: "Oğuzhan", imageName: "profil-1"),
+        .init(name: "Buğra Utku", imageName: "profil-2"),
         .init(name: "Batuhan", imageName: "profil-3"),
         .init(name: "Melisa", imageName: "profil-5"),
         .init(name: "Melek", imageName: "profil-4")

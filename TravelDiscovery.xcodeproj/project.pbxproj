@@ -25,6 +25,7 @@
 		FD7DCA442932A0CD00D75752 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7DCA432932A0CD00D75752 /* MapKit.framework */; };
 		FDCA3D342930D0A00073CF7A /* DiscoverCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */; };
 		FDD6E90429391305007109C1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FDD6E90329391305007109C1 /* Kingfisher */; };
+		FDD6E90629395976007109C1 /* paris.json in Resources */ = {isa = PBXBuildFile; fileRef = FDD6E90529395976007109C1 /* paris.json */; };
 		FDE1B3FC2931245A00738503 /* art.json in Resources */ = {isa = PBXBuildFile; fileRef = FDE1B3FB2931245A00738503 /* art.json */; };
 		FDE1B3FF2931422C00738503 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FDE1B3FE2931422C00738503 /* Kingfisher */; };
 		FDE1B402293143C100738503 /* CategoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE1B401293143C100738503 /* CategoryDetailView.swift */; };
@@ -51,6 +52,7 @@
 		FD7DCA412932A0B600D75752 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FD7DCA432932A0CD00D75752 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDCA3D332930D0A00073CF7A /* DiscoverCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCategoriesView.swift; sourceTree = "<group>"; };
+		FDD6E90529395976007109C1 /* paris.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paris.json; path = ../../../../Downloads/paris.json; sourceTree = "<group>"; };
 		FDE1B3FB2931245A00738503 /* art.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = art.json; sourceTree = "<group>"; };
 		FDE1B401293143C100738503 /* CategoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailView.swift; sourceTree = "<group>"; };
 		FDE1B4032931444F00738503 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				FDE1B3FB2931245A00738503 /* art.json */,
 				FD1B861E293167CA00848362 /* sports.json */,
+				FDD6E90529395976007109C1 /* paris.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDD6E90629395976007109C1 /* paris.json in Resources */,
 				FDE1B3FC2931245A00738503 /* art.json in Resources */,
 				FD44284C292E5942005B9635 /* Preview Assets.xcassets in Resources */,
 				FD1B861F293167CA00848362 /* sports.json in Resources */,

@@ -93,18 +93,13 @@ struct PopularDestinationDetailView : View{
                            
     ]
     var body: some View{
-//        UIViewController()
+
        
         ScrollView{
             if let photos = vm.destinationDetails?.photos {
                 DestinationHeaderContainer(imageUrlStrings: photos)
                     .frame(height: 250)
             }
-//            Image(destination.imageName)
-//                .resizable()
-//                .scaledToFill()
-//                .frame(height: 200)
-//                .clipped()
             
             VStack(alignment: .leading){
                 Text(destination.name)
@@ -116,12 +111,16 @@ struct PopularDestinationDetailView : View{
                             .foregroundColor(.orange)
                     }
                 }.padding(.top, 2)
-                
-                Text(vm.destinationDetails?.description ?? "")
-                    .padding(.top, 4)
-                    .font(.system(size: 14))
+               
                     //.lineLimit(100)
-                HStack{Spacer()}
+               HStack{
+                   
+                   
+                   Text(vm.destinationDetails?.description ?? "")
+                       .padding(.top, 4)
+                       .font(.system(size: 14))
+                   Spacer()
+               }
             }.padding(.horizontal)
             HStack {
                 Text("Location")

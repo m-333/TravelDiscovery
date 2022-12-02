@@ -10,6 +10,18 @@ import Kingfisher
 struct RestaurantDetails: Decodable{
     let description: String
     let popularDishes: [Dish]
+    let photos: [String]
+    let reviews: [Review]
+}
+struct Review: Decodable, Hashable{
+    let user: ReviewUser
+    let rating: Int
+    let text: String
+}
+
+struct ReviewUser: Decodable, Hashable {
+    let id: Int
+    let username, firstName, lastName, profileImage: String
 }
 struct Dish: Decodable, Hashable {
     let name, price, photo : String
@@ -79,28 +91,85 @@ struct RestaurantDetailsView: View {
                     Image(systemName: "dollarsign.circle.fill")
                 }.foregroundColor(.orange)
             }
+                HStack{
+                    Spacer()
+                }
                 Text(vm.details?.description ?? "")
                     .padding(.top, 8 )
                     .font(.system(size: 14, weight: .regular))
-            }.padding()
+            }.padding(.horizontal)
+                .padding(.bottom)
+            
+            
             HStack{
                 Text("Popular Dishes")
                     .font(.system(size: 16, weight: .bold))
                 Spacer()
             }.padding(.horizontal)
-            
+
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: 16){
                     ForEach(vm.details?.popularDishes ?? [], id: \.self) { dish in
-                        
+
                       DishCell(dish: dish)
-                        
+
                     }
                 }.padding(.horizontal)
             }
-             
+            if let reviews = vm.details?.reviews{
+                ReviewList(reviews: reviews)
+            }
+            
     }.navigationBarTitle("Restaurant Details", displayMode: .inline)
  }
+}
+struct ReviewList: View{
+    let reviews: [Review]
+    var body: some View{
+        HStack{
+            Text("Customer Rewiews")
+                .font(.system(size: 16, weight: .bold))
+            Spacer()
+        }.padding(.horizontal)
+//        if let reviews = reviews{
+            ForEach(reviews, id: \.self){ review in
+                VStack(alignment: .leading){
+                    HStack{
+                        KFImage(URL(string: review.user.profileImage))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 44)
+                            .clipShape(Circle())
+                        VStack(alignment: .leading, spacing: 4){
+                            Text("\(review.user.firstName) \(review.user.lastName)")
+                                .font(.system(size: 14, weight: .bold))
+                            HStack(spacing: 4){
+                                ForEach(0..<review.rating, id: \.self){ num in
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(.orange)
+                            }
+                                ForEach(0..<5 - review.rating, id: \.self){ num in
+                                    Image(systemName: "star.fill")
+                                        .foregroundColor(.gray)
+                                }
+                            
+                            }.font(.system(size: 12))
+                        
+                        }
+                        
+                       
+                        Spacer()
+                        Text("dec 2022")
+                            .font(.system(size: 14, weight: .bold))
+                    }
+                    Text(review.text)
+                        .font(.system(size: 14, weight: .regular))
+                       
+                } .padding(.top)
+                    .padding(.horizontal)
+//            }
+        }
+    }
 }
 struct DishCell: View {
     let dish: Dish

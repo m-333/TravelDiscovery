@@ -76,11 +76,14 @@ struct RestaurantDetailsView: View {
                     }
                 }
                     Spacer()
-                    Text("see more photos")
-                        .foregroundColor(.white)
-                        .font(.system(size: 18, weight: .regular))
-                        .frame(width: 80)
-                        .multilineTextAlignment(.trailing)
+                    NavigationLink(destination: RestaurantPhotosView() , label: {
+                        Text("see more photos")
+                            .foregroundColor(.white)
+                            .font(.system(size: 18, weight: .regular))
+                            .frame(width: 80)
+                            .multilineTextAlignment(.trailing)
+                    })
+                    
                 }.padding()
        }
             VStack(alignment: .leading, spacing: 8){

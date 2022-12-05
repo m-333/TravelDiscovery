@@ -7,9 +7,40 @@
 
 import SwiftUI
 import Kingfisher
+struct UserDetails: Decodable{
+    let username, firstName, lastName, profileImage: String
+    let followers, following: Int
+    let posts: [Post]
+//    let photos: [String]
+ 
+}
+struct Post: Decodable, Hashable {
+    let title, imageUrl, views: String
+    let hashtags: [String]
+}
+class UsersDetailsViewModel: ObservableObject {
+
+    @Published var userDetails: UserDetails?
+    
+    init() {
+
+        if let path = Bundle.main.url(forResource: "users", withExtension: "json"){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+                            do {
+                                let data = try Data(contentsOf: path)
+                                 
+                                self.userDetails = try JSONDecoder().decode(UserDetails.self, from: data)
+                } catch{
+                    print("failed to decode JSON: ", error)
+                }
+            }
+        }
+    }
+       
+}
 struct UserDetailsView: View {
     let user: User
-
+    @ObservedObject var vm = UsersDetailsViewModel()
     var body: some View{
         ScrollView{
             VStack{
@@ -71,14 +102,17 @@ struct UserDetailsView: View {
                         .background(Color(white: 0.9))
                             .cornerRadius(100)
                 }.font(.system(size: 12, weight: .semibold))
-                ForEach(0..<10, id:\.self){ num in
-                    VStack(alignment: .leading){
-                        Image("japonya")
+                
+                ForEach(vm.userDetails?.posts ?? [], id:\.self){ post in
+//                ForEach(0..<5, id: \.self){
+//                    num in
+                    VStack(alignment: .leading, spacing: 12){
+                        KFImage(URL(string: post.imageUrl))
+//                        Image("japonya")
                             .resizable()
                             .scaledToFill()
                             .frame(height: 200)
                             .clipped()
-                        Spacer()
                         HStack{
                             Image("profil-1")
                                 .resizable()
@@ -90,7 +124,7 @@ struct UserDetailsView: View {
                             {
                                 Text("Here is my post title")
                                     .font(.system(size: 14, weight: .semibold))
-                                Text("Here is my post title")
+                                Text("ben bu dünyayı kılına takmayan adamım")
                                     .font(.system(size: 14, weight: .regular))
                                     .foregroundColor(.gray)
                             }

@@ -36,7 +36,6 @@ class RestaurantDetailsViewModel: ObservableObject {
     init() {
 
         if let path = Bundle.main.url(forResource: "restaurant", withExtension: "json"){
-            print("çalıştı")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                             do {
                                 let data = try Data(contentsOf: path)
@@ -127,6 +126,7 @@ struct RestaurantDetailsView: View {
  }
 }
 struct ReviewList: View{
+    
     let reviews: [Review]
     var body: some View{
         HStack{

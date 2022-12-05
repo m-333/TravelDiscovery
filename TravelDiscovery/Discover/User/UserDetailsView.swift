@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Kingfisher
 struct UserDetailsView: View {
     let user: User
 
@@ -29,7 +29,7 @@ struct UserDetailsView: View {
                         .font(.system(size: 12, weight: .semibold))
                     Image(systemName: "hand.thumbsup.fill")
                         .font(.system(size: 12, weight: .semibold))
-                    Text("5111994" )
+                    Text("115.1994" )
                 }
                    Text("Travel Creator, Vlogger")
                     .font(.system(size: 14, weight: .semibold))
@@ -49,10 +49,73 @@ struct UserDetailsView: View {
                     }
                     
                 }
-               
-            }.navigationBarTitle(user.name, displayMode: .inline)
+                HStack(spacing: 12){
+                    Button(action: {}, label: {
+                        Spacer()
+                        Text("Follow")
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                    }).padding(.vertical, 8)
+                        .background(Color.orange)
+                        .cornerRadius(100)
+                    Button(action: {}, label: {
+                               Spacer()
+                               Text("Contact")
+                                 
+                                   .foregroundColor(.black)
+                               Spacer()
+                               
+                           }).padding(.vertical, 8)
+                        .background(Color(white: 0.9))
+                            .cornerRadius(100)
+                }.font(.system(size: 12, weight: .semibold))
+                ForEach(0..<10, id:\.self){ num in
+                    VStack(alignment: .leading){
+                        Image("japonya")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: 200)
+                            .clipped()
+                        Spacer()
+                        HStack{
+                            Image("profil-1")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 34)
+                                .clipShape(Circle())
+                            
+                            VStack(alignment: .leading)
+                            {
+                                Text("Here is my post title")
+                                    .font(.system(size: 14, weight: .semibold))
+                                Text("Here is my post title")
+                                    .font(.system(size: 14, weight: .regular))
+                                    .foregroundColor(.gray)
+                            }
+                            
+                        }.padding(.horizontal, 8)
+                        HStack{
+                            ForEach(0..<3, id: \.self) { num in
+                        Text("#Traveling")
+                            .foregroundColor(Color(.blue))
+                            .font(.system(size: 14, weight: .semibold))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 4)
+                            .background(Color(white: 1))
+                            .cornerRadius(20)
+                            }
+                        }.padding(.bottom)
+                        
+                    }
+                    .background(Color(white: 1))
+                        .cornerRadius(12)
+                        .shadow(color: .init(white: 0.9), radius: 5, x: 0, y: 4)
+                }
+            }.padding(.horizontal)
             
-            }
+            }.navigationBarTitle(user.name, displayMode: .inline)
     }
 }
 struct UserDetailsView_Previews: PreviewProvider {

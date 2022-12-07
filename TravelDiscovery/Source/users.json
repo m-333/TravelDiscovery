@@ -1,0 +1,40 @@
+{
+  "id": 0,
+  "username": "amyadams20",
+  "firstName": "Amy",
+  "lastName": "Adams",
+  "profileImage": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/a41cf22c-578d-456f-b0c4-90d5c017eab1",
+  "followers": 59384,
+  "following": 2112,
+  "posts": [
+    {
+      "title": "Traveling in Dubai",
+      "imageUrl": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/288b811b-048c-4427-a875-2edc65c23d76",
+      "views": "20K",
+      "hashtags": [
+        "Traveling",
+        "Relaxing",
+        "Unforgettable"
+      ]
+    },
+    {
+      "title": "Hawaii Fun Times",
+      "imageUrl": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/cb944f86-4d98-461f-b4ee-ebccbc479d8b",
+      "views": "543",
+      "hashtags": [
+        "Suntanning"
+      ]
+    },
+    {
+      "title": "Beach Hangout for Days",
+      "imageUrl": "https://letsbuildthatapp-videos.s3.us-west-2.amazonaws.com/4aff5261-6cea-49ad-a541-cb70b7f13ed3",
+      "views": "98,293,232",
+      "hashtags": [
+        "BeachBathing",
+        "Scenery",
+        "Water",
+        "Tanning"
+      ]
+    }
+  ]
+}

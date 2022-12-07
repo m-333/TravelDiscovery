@@ -1,0 +1,32 @@
+{
+  "id": 0,
+  "name": "Paris",
+  "country": "France",
+  "description": "Paris (nicknamed the \"City of light\") is the capital city of France, and the largest city in France. The area is 105 square kilometres (41 square miles), and around 2.15 million people live there. If suburbs are counted, the population of the Paris area rises to 12 million people.",
+  "thumbnail": "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/c2eb637f-61d4-4762-b0c7-17d4bb2e9132",
+  "photos": [
+    "https://res.cloudinary.com/turna/image/upload/c_scale,w_648,h_405,dpr_2/f_jpg,q_auto:low/v1572614327/Paris_z0tgmv.jpg?_i=AA",
+    "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646041901/post_images/paris-125/Barrios/24007076426_df0131119d_o_Cropped.jpg",
+    "https://res.cloudinary.com/hello-tickets/image/upload/c_limit,f_auto,q_auto,w_1480/v1646040162/post_images/paris-125/sebastien-gabriel-O0zLR_lVt8I-unsplash_Cropped.jpg",
+    "https://media.cntraveler.com/photos/5cf986d26640e77bbbe1d19f/master/w_2580%2Cc_limit/Grand%2520Palais_2019_MAG3937-Mirco%2520Magliocca.jpg"
+  ],
+  "related": [
+    [
+      {
+        "name": "Tokyo",
+        "country": "Japan",
+        "thumbnail": "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/bda78f98-0050-4f40-9a2c-0160d9043c06"
+      },
+      {
+        "name": "New York City",
+        "country": "United States"
+      },
+      {
+        "name": "Seoul",
+        "country": "Korea"
+      }
+    ]
+  ],
+  "latitude": 48.8566,
+  "longitude": 2.35
+}

@@ -18,38 +18,41 @@ struct NavigationLazyView<Content: View>: View {
 
 struct DiscoverCategoriesView : View {
     let categories: [Category] = [
-        .init(name: "art"  , imageName: "paintpalette.fill"),
-        .init(name: "sports"  , imageName: "sportscourt.fill"),
-        .init(name: "Live Events"  , imageName: "music.mic"),
-        .init(name: "Food"  , imageName: "tray.fill"),
-        .init(name: "History"  , imageName: "books.vertical.fill")
+        .init(name: "art"  , imageName: "art-1"),
+        .init(name: "sports"  , imageName: "sport-1"),
+        .init(name: "Live Events"  , imageName: "live_event-1"),
+        .init(name: "Food"  , imageName: "food-1"),
+        .init(name: "History"  , imageName: "history-1")
         ]
     var body: some View {
         ScrollView(.horizontal, showsIndicators:  false ){
-            HStack(alignment: .top, spacing: 8){
+            HStack(alignment: .top, spacing: 8) {
                 ForEach(categories, id: \.self) { category in
-                    
                     NavigationLink(
-                        
-                        destination: NavigationLazyView(CategoryDetailView(name: category.name)),
+                        destination: NavigationLazyView(CategoryDetailView(name:category.name)),
                           label:{
                             VStack(spacing: 0){
                                 //Spacer()
-                                Image(systemName: category.imageName)
+                                Image(category.imageName)
+                                    .resizable()
+                                   .scaledToFill()
                                     .font(.system(size: 20))
                                     .foregroundColor(Color.mint)
                                     .frame(width: 64, height: 64)
                                     .background(Color.white)
                                     .cornerRadius(64)
-                                    //.shadow(color:.gray, radius: 4, x:0.0, y:2)
+                                    
+//                                    .shadow(color:.blue, radius: 5, x:0.0, y:2)
+                                    .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
                                 Text( category.name)
                                     .font(.system(size: 12, weight: .semibold))
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                             }.frame(width:68)
-                            
-                        })
-                }
+
+                        }
+                    )
+                }.padding(.top)
             }.padding(.horizontal)
         }
     }

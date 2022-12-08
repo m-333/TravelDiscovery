@@ -7,5 +7,5 @@
 
 import Foundation
 struct Resturant: Hashable{
-    let name: String, imageName: String
+    let name: String, imageName: String, country: String, category:String
 }

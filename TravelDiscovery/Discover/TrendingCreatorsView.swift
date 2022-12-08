@@ -10,17 +10,17 @@ import SwiftUI
 struct TrendingCreatorsView : View{
     
     let users: [User] = [
-        .init(name: "Oğuzhan", imageName: "profil-1"),
-        .init(name: "Buğra Utku", imageName: "profil-2"),
-        .init(name: "Batuhan", imageName: "profil-3"),
-        .init(name: "Melisa", imageName: "profil-5"),
-        .init(name: "Ayşe", imageName: "profil-4")
+        .init( id: 0, name: "Oğuzhan", imageName: "profil-1"),
+        .init( id: 1, name: "Buğra Utku", imageName: "profil-2"),
+        .init( id: 2, name: "Batuhan", imageName: "profil-3"),
+        .init(id: 3,  name: "Melisa", imageName: "profil-5"),
+        .init(id: 4, name: "Ayşe", imageName: "profil-4")
     ]
     
     var body: some View{
         VStack{
             HStack{
-            Text("Popular destinations")
+            Text("Popular creators")
                 .font(.system(size: 14, weight: .semibold))
             Spacer()
             Text("see all")
@@ -51,6 +51,7 @@ struct DiscoverUserView: View{
                 .cornerRadius(60)
             Text(user.name)
                 .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(.black)
                 .multilineTextAlignment(.center)
             
         }.frame(width: 60)

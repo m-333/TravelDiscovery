@@ -9,14 +9,14 @@ import SwiftUI
 
 struct PopularRestaurantsView : View{
     let resturants: [Resturant] = [
-        .init(name: "Japan's  Finest Tapas", imageName: "susi"),
-        .init(name: "Bar & Grill", imageName: "food")
+        .init(name: "Japan's  Finest Tapas", imageName: "susi", country: "Japan", category: "sushi"),
+        .init(name: "Bar & Grill", imageName: "food", country: "US", category: "grill")
     ]
     
     var body: some View{
         VStack{
             HStack{
-            Text("Popular destinations")
+            Text("Popular restaurants")
                 .font(.system(size: 14, weight: .semibold))
             Spacer()
             Text("see all")
@@ -67,10 +67,10 @@ struct RestaurantTile : View{
                 }
                 HStack{
                     Image(systemName: "star.fill")
-                    Text("4.7 · Sushi · $$" )
+                    Text("4.7 ·\(restaurant.category) · $$" )
                 }
                 
-                Text("Tokyo, Japan")
+                Text(restaurant.country)
             } .font(.system(size: 12, weight: .semibold))
            
             Spacer()

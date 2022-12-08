@@ -19,7 +19,7 @@ struct DiscoverView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.cyan, Color.orange]), startPoint: .leading, endPoint: .trailing).ignoresSafeArea()
+                LinearGradient(gradient: Gradient(colors: [Color.teal, Color.clear]), startPoint: .leading, endPoint: .trailing).ignoresSafeArea()
                 
                 Color.discoverbackgorund
                     .offset(y: 400)
@@ -50,7 +50,7 @@ struct DiscoverView: View {
                         .padding(.top, 32)
                     }
             }
-           .navigationTitle("Discover")
+           .navigationTitle("Geziyoz")
             }
         }
     }

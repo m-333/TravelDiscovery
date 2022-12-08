@@ -141,7 +141,7 @@ struct ReviewList: View{
                         KFImage(URL(string: review.user.profileImage))
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 44)
+                            .frame(width: 50)
                             .clipShape(Circle())
                         VStack(alignment: .leading, spacing: 4){
                             Text("\(review.user.firstName) \(review.user.lastName)")
@@ -208,7 +208,7 @@ struct DishCell: View {
 struct RestaurantDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            RestaurantDetailsView(restaurant: .init(name: "Japan's Finest Tapas", imageName: "susi"))
+            RestaurantDetailsView(restaurant: .init(name: "Japan's Finest Tapas", imageName: "susi", country: "japan", category: "Sushi"))
         }
         
     }

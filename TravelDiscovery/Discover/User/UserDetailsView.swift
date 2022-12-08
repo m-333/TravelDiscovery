@@ -21,10 +21,11 @@ struct Post: Decodable, Hashable {
 class UsersDetailsViewModel: ObservableObject {
 
     @Published var userDetails: UserDetails?
-    
-    init() {
+    @Published var post: Post?
+   
+    init(userid: Int) {
 
-        if let path = Bundle.main.url(forResource: "users", withExtension: "json"){
+        if let path = Bundle.main.url(forResource: "\(userid)", withExtension: "json"){
         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                             do {
                                 let data = try Data(contentsOf: path)
@@ -38,9 +39,17 @@ class UsersDetailsViewModel: ObservableObject {
     }
        
 }
+
 struct UserDetailsView: View {
     let user: User
-    @ObservedObject var vm = UsersDetailsViewModel()
+   
+    @ObservedObject var vm : UsersDetailsViewModel
+        init(user: User){
+            self.user = user
+            self.vm =  .init(userid: user.id)
+        }
+       
+    
     var body: some View{
         ScrollView{
             VStack{
@@ -52,11 +61,11 @@ struct UserDetailsView: View {
                     .shadow(radius: 10)
                     .padding(.horizontal)
                     .padding(.top)
-                Text(user.name)
+                Text("\(self.vm.userDetails?.firstName ?? "") ")
                     .font(.system(size: 16, weight: .semibold))
                 
                 HStack{
-                    Text("@\(user.name)94    *  ")
+                    Text("@\(self.vm.userDetails?.username ?? "") *  ")
                         .font(.system(size: 12, weight: .semibold))
                     Image(systemName: "hand.thumbsup.fill")
                         .font(.system(size: 12, weight: .semibold))
@@ -114,7 +123,7 @@ struct UserDetailsView: View {
                             .frame(height: 200)
                             .clipped()
                         HStack{
-                            Image("profil-1")
+                            Image(user.imageName)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 34)
@@ -122,9 +131,9 @@ struct UserDetailsView: View {
                             
                             VStack(alignment: .leading)
                             {
-                                Text("Here is my post title")
+                                Text(post.title)
                                     .font(.system(size: 14, weight: .semibold))
-                                Text("ben bu dünyayı kılına takmayan adamım")
+                                Text(post.views)
                                     .font(.system(size: 14, weight: .regular))
                                     .foregroundColor(.gray)
                             }
@@ -152,10 +161,11 @@ struct UserDetailsView: View {
             }.navigationBarTitle(user.name, displayMode: .inline)
     }
 }
+
 struct UserDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            UserDetailsView(user: .init(name: "Oğuzhan", imageName: "profil-1"))
+            UserDetailsView(user: .init( id: 0, name: "Oğuzhan", imageName: "profil-1"))
         }
         
     }
